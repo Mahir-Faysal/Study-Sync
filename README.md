@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # StudySync - Interactive Learning Platform
 
 StudySync is a comprehensive web-based educational platform that enables effective self-assessment and collaborative learning. The platform features question and exam management, student assessment tools, and a Q&A forum for peer-to-peer knowledge exchange.
@@ -295,3 +296,6 @@ curl http://localhost:8080/api/auth/test
 ---
 
 **StudySync** - Empowering education through interactive assessment and collaboration! 🎓
+=======
+# Study-Sync
+>>>>>>> 88c555b544b8b0c607528e2a86c5357c8ec9ea90
