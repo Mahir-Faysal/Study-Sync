@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # StudySync - Interactive Learning Platform
 
 StudySync is a comprehensive web-based educational platform that enables effective self-assessment and collaborative learning. The platform features question and exam management, student assessment tools, and a Q&A forum for peer-to-peer knowledge exchange.
@@ -30,7 +29,7 @@ StudySync is a comprehensive web-based educational platform that enables effecti
 - **Java 17** with **Spring Boot 3.2.0**
 - **Spring Security** for authentication and authorization
 - **Spring Data JPA** with Hibernate ORM
-- **PostgreSQL** (production) / **H2** (development) database
+- **PostgreSQL** (production) / **H2** (development/testing)
 - **JWT** for stateless authentication
 - **Maven** for dependency management
 
@@ -40,86 +39,155 @@ StudySync is a comprehensive web-based educational platform that enables effecti
 - **React Bootstrap** for UI components
 - **Axios** for API communication
 - **Chart.js** for data visualization
+- **React Icons** for modern iconography
 - **Bootstrap 5** for responsive styling
 
-## 📋 Prerequisites
+## � Project Structure
 
-- **Java 17** or higher
-- **Node.js 16** or higher
-- **npm** or **yarn**
-- **PostgreSQL** (optional for production)
+```
+StudySync/
+├── 📂 backend/                    # Spring Boot Backend
+│   ├── 📄 pom.xml                # Maven dependencies
+│   ├── 📂 src/main/
+│   │   ├── 📂 java/com/studysync/
+│   │   │   ├── 📄 StudySyncApplication.java    # Main application
+│   │   │   ├── 📂 config/         # Configuration classes
+│   │   │   ├── 📂 controller/     # REST API endpoints
+│   │   │   ├── 📂 dto/            # Data Transfer Objects
+│   │   │   ├── 📂 model/          # Database entities
+│   │   │   ├── 📂 repository/     # Data access layer
+│   │   │   ├── 📂 security/       # JWT & Authentication
+│   │   │   └── 📂 service/        # Business logic
+│   │   └── 📂 resources/
+│   │       ├── 📄 application.properties      # PostgreSQL config
+│   │       └── 📄 application-h2.properties   # H2 config
+│   └── 📂 target/                 # Compiled classes & JAR
+│
+├── 📂 frontend/                   # React Frontend
+│   ├── 📄 package.json           # NPM dependencies
+│   ├── 📂 public/
+│   ├── 📂 src/
+│   │   ├── 📄 App.js             # Main React component
+│   │   ├── 📄 index.css          # Global styles
+│   │   ├── 📂 components/
+│   │   │   ├── 📂 auth/          # Authentication components
+│   │   │   ├── 📂 questions/     # Question management
+│   │   │   ├── 📂 exams/         # Exam functionality
+│   │   │   ├── 📂 forum/         # Q&A Forum
+│   │   │   └── 📂 analytics/     # Performance analytics
+│   │   └── 📂 services/          # API communication
+│   └── 📂 build/                 # Production build
+│
+├── 📄 .gitignore                 # Git ignore rules
+├── 📄 README.md                  # Project documentation
+├── 📄 start.bat                  # PostgreSQL startup (Windows)
+├── 📄 start-h2.bat              # H2 startup (Windows)
+├── 📄 start.sh                   # PostgreSQL startup (Linux/Mac)
+└── 📄 start-h2.sh               # H2 startup (Linux/Mac)
+```
+
+### Backend Architecture
+```
+CLIENT REQUESTS
+       ↓
+CONTROLLERS LAYER (REST API endpoints)
+       ↓
+SECURITY LAYER (JWT Authentication & Authorization)
+       ↓
+SERVICES LAYER (Business logic)
+       ↓
+REPOSITORIES LAYER (Data access)
+       ↓
+DATABASE LAYER (PostgreSQL/H2)
+```
+
+### Frontend Architecture
+```
+BROWSER
+   ↓
+APP.JS (Main Router)
+   ↓
+COMPONENTS LAYER (Auth, Questions, Exams, Forum, Analytics)
+   ↓
+SERVICES LAYER (AuthService, ApiService)
+   ↓
+BACKEND API (http://localhost:8080)
+```
 
 ## 🏃‍♂️ Getting Started
 
-### 1. Clone the Repository
+### Quick Start (No Database Installation Required)
+
 ```bash
-git clone <repository-url>
-cd StudySync
+# Windows
+start-h2.bat
+
+# Linux/Mac
+chmod +x start-h2.sh
+./start-h2.sh
 ```
 
-### 2. Backend Setup
+This will start StudySync with H2 in-memory database - **no PostgreSQL installation needed!**
 
-#### Navigate to backend directory
+### Option A: H2 Database (Recommended for Testing)
+**✅ No installation required - works out of the box!**
+
 ```bash
-cd backend
+# Windows
+start-h2.bat
+
+# Linux/Mac
+chmod +x start-h2.sh
+./start-h2.sh
 ```
 
-#### Configure Database (Optional)
-The application uses H2 in-memory database by default. To use PostgreSQL:
+- **Pros**: Zero setup, perfect for development/testing
+- **Cons**: Data is lost when application stops
+- **Access**: H2 Console at http://localhost:8080/h2-console
 
+### Option B: PostgreSQL Database (Production Ready)
+**🔧 Requires PostgreSQL installation**
+
+```bash
+# Windows
+start.bat
+
+# Linux/Mac
+./start.sh
+```
+
+**PostgreSQL Setup:**
 1. Install and start PostgreSQL
 2. Create a database named `studysync`
-3. Update `src/main/resources/application.properties`:
-   ```properties
-   # Comment out H2 configuration
-   # Uncomment PostgreSQL configuration
-   spring.datasource.url=jdbc:postgresql://localhost:5432/studysync
-   spring.datasource.username=your_username
-   spring.datasource.password=your_password
-   ```
+3. Update credentials in `backend/src/main/resources/application.properties`
 
-#### Run the Backend
+### Manual Setup (If needed)
+
+#### Backend Setup
 ```bash
+cd backend
+# For H2 database
+mvn spring-boot:run -Dspring-boot.run.profiles=h2
+
+# For PostgreSQL database
 mvn spring-boot:run
 ```
 
-The backend will start on `http://localhost:8080`
-
-### 3. Frontend Setup
-
-#### Navigate to frontend directory
+#### Frontend Setup
 ```bash
-cd ../frontend
-```
-
-#### Install Dependencies
-```bash
+cd frontend
 npm install
-```
-
-#### Start the Development Server
-```bash
 npm start
 ```
 
-The frontend will start on `http://localhost:3000`
+The application will be available at:
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8080
+- **H2 Console**: http://localhost:8080/h2-console (H2 mode only)
 
-## 📱 Usage Guide
+---
 
-### First Time Setup
-
-1. **Access the Application**: Open `http://localhost:3000`
-2. **Register an Account**: 
-   - Click "Register here"
-   - Choose your role (Student or Question Setter)
-   - Fill in your details
-3. **Login**: Use your credentials to access the platform
-
-### For Question Setters
-
-1. **Create Questions**:
-   - Navigate to "Questions" from the menu
-   - Click "Add New Question"
+**StudySync** - Empowering education through interactive assessment and collaboration! 🎓
    - Enter question text, options (A-D), and correct answer
    - Save the question
 
