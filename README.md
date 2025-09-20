@@ -80,10 +80,6 @@ StudySync/
 │
 ├── 📄 .gitignore                 # Git ignore rules
 ├── 📄 README.md                  # Project documentation
-├── 📄 start.bat                  # PostgreSQL startup (Windows)
-├── 📄 start-h2.bat              # H2 startup (Windows)
-├── 📄 start.sh                   # PostgreSQL startup (Linux/Mac)
-└── 📄 start-h2.sh               # H2 startup (Linux/Mac)
 ```
 
 
