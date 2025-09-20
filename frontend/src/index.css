@@ -479,19 +479,56 @@ p {
 .auth-container {
   min-height: 100vh;
   background: var(--gradient-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .auth-card {
   background: white;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
-  padding: 3rem;
+  padding: 2.5rem;
   width: 100%;
-  max-width: 450px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.auth-header {
+  margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .auth-container {
+    padding: 0.5rem;
+  }
+  
+  .auth-card {
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+  }
+  
+  .auth-header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .auth-card {
+    padding: 3rem;
+    max-width: 450px;
+  }
 }
 
 /* Enhanced Alerts */
