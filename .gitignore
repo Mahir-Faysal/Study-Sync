@@ -327,3 +327,13 @@ javadoc/
 # Optional
 .vscode/settings.json
 .history
+
+# Dependencies
+/node_modules
+
+# Build files
+/target
+
+# Log files and environment variables
+*.log
+.env
