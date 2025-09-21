@@ -115,6 +115,3 @@ The application will be available at:
 ## 📄 License
 
 This project is licensed under the MIT License.
-
-
-hello i am mahir
